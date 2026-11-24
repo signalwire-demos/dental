@@ -482,6 +482,9 @@ class OutboundConfirmAgent(AgentBase):
                 date_end=date_end,
                 length_minutes=length_minutes,
             )
+            # Same-day searches can return openings that already started.
+            now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            slots = [s for s in (slots or []) if s.get("DateTimeStart", "") > now_str]
 
             if not slots or len(slots) == 0:
                 state["outcome"] = "no_slots"

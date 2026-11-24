@@ -789,6 +789,9 @@ class DentalAgent(AgentBase):
                 prov_num=prov_num,
                 length_minutes=length_minutes,
             )
+            # Same-day searches can return openings that already started.
+            now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            slots = [s for s in (slots or []) if s.get("DateTimeStart", "") > now_str]
 
             if not slots or (isinstance(slots, list) and len(slots) == 0):
                 result = SwaigFunctionResult(
