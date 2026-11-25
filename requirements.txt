@@ -1,4 +1,4 @@
-signalwire-sdk>=3.0.2
+signalwire-sdk>=3.7.4
 requests>=2.32.4
 python-dotenv>=1.0.0
 gunicorn>=23.0.0
